@@ -1,0 +1,21 @@
+.filter-bar-container {
+    background-color: #f3f4f6;
+    padding: 15px 20px;
+    border-radius: 12px;
+    min-width: 300px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .filter-bar-container label {
+    margin-bottom: 0.75rem;
+    font-size: 1rem;
+    color: #333;
+  }
+  
+  .slider {
+    width: 100%;
+    max-width: 500px;
+  }

@@ -1,0 +1,34 @@
+.book-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+    font-family: sans-serif;
+  }
+  
+  .book-table th,
+  .book-table td {
+    text-align: left;
+    padding: 1rem;
+    border-bottom: 1px solid #ccc;
+    vertical-align: top;
+  }
+  
+  .book-table th {
+    background-color: #f2f2f2;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1a202c;
+  }
+  
+  .book-table td {
+    font-size: 0.95rem;
+    color: #2d3748;
+  }
+  
+  .cover-image {
+    width: 70px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+  }
+  
