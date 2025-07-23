@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
+import { Routes, Route, Link } from "react-router-dom";
 import "./App.css";
 import BookCard from "./components/BookCard";
 import FilterBar from "./components/FilterBar";
 import SummaryCards from "./components/SummaryCards";
+import BookDetail from "./components/BookDetail";
 import "./components/BookCard.css";
+import Charts from "./components/Charts";
 
 function App() {
   const [books, setBooks] = useState([]);
@@ -45,63 +48,79 @@ function App() {
     const matchesTitle = book.title.toLowerCase().includes(searchTerm.toLowerCase());
     const year = book.first_publish_year || 0;
     const matchesYear = year >= filterYear;
-  
+
     return matchesTitle && matchesYear;
   });
 
   return (
     <div className="App">
-      <h1>OpenLibrary Fantasy Books</h1> <br/>
+      <Routes>
+        {/* Dashboard/Home Route */}
+        <Route
+          path="/"
+          element={
+            <>
+              <h1>OpenLibrary Fantasy Books</h1> <br />
 
-      <div className="controls-row">
-        <input
-          type="text"
-          placeholder="Search by title..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="search-input"
+              <div className="controls-row">
+                <input
+                  type="text"
+                  placeholder="Search by title..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="search-input"
+                />
+                {!loading && (
+                  <FilterBar
+                    filterYear={filterYear}
+                    setFilterYear={setFilterYear}
+                    minYear={minYear}
+                    maxYear={maxYear}
+                  />
+                )}
+              </div>
+
+
+              {!loading && <Charts books={filteredBooks} />}
+              {!loading && <SummaryCards books={filteredBooks} />}
+              <br /><br />
+
+              {loading ? (
+                <p>Loading books...</p>
+              ) : (
+                <table className="book-table">
+                  <thead>
+                    <tr>
+                      <th>Cover</th>
+                      <th>Title</th>
+                      <th>Author(s)</th>
+                      <th>First Published</th>
+                      <th>Subjects</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {filteredBooks.map((book, index) => (
+                      <BookCard
+                        key={index}
+                        id={book.key} // Pass the book key
+                        title={book.title}
+                        authors={book.authors?.map((a) => a.name) || ["Unknown"]}
+                        publishYear={book.first_publish_year || "N/A"}
+                        subjects={book.subject}
+                        coverId={book.cover_id}
+                        searchTerm={searchTerm}
+                      />
+                    ))}
+                  </tbody>
+                </table>
+              )}
+            </>
+          }
         />
-        {!loading && (
-          <FilterBar
-            filterYear={filterYear}
-            setFilterYear={setFilterYear}
-            minYear={minYear}
-            maxYear={maxYear}
-          />
-        )}
-      </div>
 
-      {!loading && <SummaryCards books={filteredBooks} />}
-      <br/><br/>
-
-      {loading ? (
-        <p>Loading books...</p>
-      ) : (
-        <table className="book-table">
-          <thead>
-            <tr>
-              <th>Cover</th>
-              <th>Title</th>
-              <th>Author(s)</th>
-              <th>First Published</th>
-              <th>Subjects</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredBooks.map((book, index) => (
-              <BookCard
-                key={index}
-                title={book.title}
-                authors={book.authors?.map((a) => a.name) || ["Unknown"]}
-                publishYear={book.first_publish_year || "N/A"}
-                subjects={book.subject}
-                coverId={book.cover_id}
-                searchTerm={searchTerm}
-              />
-            ))}
-          </tbody>
-        </table>
-      )}
+        {/* Detail Route */}
+        <Route path="/book/*" element={<BookDetail />} />
+      </Routes>
     </div>
   );
 }

@@ -101,3 +101,33 @@ body {
 .book-table tr:hover {
   background-color: #f1f1f1;
 }
+
+.dashboard-top {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 2rem;
+  align-items: flex-start;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+.controls-column {
+  flex: 1;
+  min-width: 300px;
+}
+
+.charts-column {
+  flex: 1;
+  min-width: 350px;
+  background-color: #13137e;
+  padding: 1rem;
+  border-radius: 10px;
+  box-shadow: 0 0 12px rgba(168, 44, 44, 0.3);
+}
+
+.charts-column canvas {
+  background-color: rgb(199, 9, 9);
+  padding: 1rem;
+  border-radius: 10px;
+}

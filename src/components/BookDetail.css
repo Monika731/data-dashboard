@@ -1,0 +1,59 @@
+.book-detail {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 24px;
+    background-color: #fdfdfd;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: "Segoe UI", sans-serif;
+    line-height: 1.6;
+  }
+  
+  .back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: #0077cc;
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .back-link:hover {
+    text-decoration: underline;
+  }
+  
+  .book-detail h2 {
+    font-size: 28px;
+    margin-bottom: 16px;
+    color: #333;
+  }
+  
+  .book-detail .description {
+    font-size: 16px;
+    margin-bottom: 16px;
+    color: #444;
+  }
+  
+  .book-detail p {
+    margin: 8px 0;
+  }
+  
+  .book-detail strong {
+    color: #555;
+  }
+  
+  .cover-image {
+    margin-top: 24px;
+    max-width: 100%;
+    border-radius: 4px;
+  }
+  
+  .subject-list {
+    max-height: 160px;
+    overflow-y: auto;
+    background: #f1f1f1;
+    padding: 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #444;
+  }
+  
